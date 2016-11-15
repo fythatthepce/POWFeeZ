@@ -1,0 +1,119 @@
+@charset "utf-8";
+
+body {
+  font: 14px tahoma;
+  background: url("/images/bg2.jpg") fixed;
+}
+body > * {
+  font-family: tahoma;
+}
+div#container {
+  width: 1000px;
+  margin: auto;
+}
+div#container > div {
+  border-bottom: solid 1px #bbb !important;
+  min-height: 5px;
+}
+div#container > div:last-child {
+  border-bottom: solid 0px gray !important;
+}
+div#head {
+  background: white;
+  font-size: 20px;
+  color: navy;
+}
+div#head > span:not(.raquo) {
+  display: inline-block;
+  padding: 8px 5px 10px 5px;
+}
+div#head > span:first-child:not(.raquo) {
+  padding-left: 10px !important;
+}
+span.current {
+  background: black !important;
+  color: white !important;
+  border-top: solid 2px ;
+}
+div#head img {
+  vertical-align: bottom;
+  margin-right: 5px;
+  height: 24px;
+}
+div#bottom {
+  background: whitesmoke;
+  padding: 2px 20px;
+}
+div#content {
+  padding: 10px;
+  background: white;
+}
+div#bottom button {
+  margin: 1px 2px;
+  background: red;
+  border: solid 1px silver;
+  color: white;
+  padding: 3px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font: 14px tahoma;
+}
+div#bottom button:hover {
+  background: aqua;
+  color: red;
+}
+button#index, button#back {
+  float: left;
+}
+button#next, button#confirm, button#submit {
+  float:right;
+}
+h2 {
+  color:black;
+  text-align: center;
+  font-size: 18px;
+}
+.warning {
+  color:red !important;
+}
+img.logo2 {
+  margin: 10px 0px 10px;
+}
+h2.order-step {
+  float: right;
+  font: normal 24px tahoma;
+  color: steelblue;
+  margin: 20px 0px 0px;
+}
+br.clear {
+  clear: both;
+}
+h5 {
+  text-align: center;
+  margin: 0px;
+}
+
+h33{
+  position: absolute;
+  top: 150px;
+}
+
+h77 {
+  text-align: center;
+}
+ul#log {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: white;
+}
+li#log a{
+  display: block;
+  text-align: center;
+  padding: 18px;
+  float: right;
+  font-size: 20px;
+  text-decoration: none;
+  color:black;
+}
