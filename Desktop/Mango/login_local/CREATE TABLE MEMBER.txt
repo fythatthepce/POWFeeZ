@@ -1,9 +1,0 @@
-CREATE TABLE IF NOT EXISTS member(
-            id  MEDIUMINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-            fname VARCHAR(150),
-            lname VARCHAR(150),
-            email  VARCHAR(200) UNIQUE,
-            pass VARCHAR(20),
-            address VARCHAR(300),
-            phone VARCHAR(20),
-            verify VARCHAR(6))
