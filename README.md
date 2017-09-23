@@ -1,4 +1,5 @@
-<H1>POWFeez Droid</H1>
+<H1>POWFeeZ Droid</H1><br>
+- Original Control v1 for support POWFeeZ Droid : https://github.com/fythatthepce/sound2<br>
 Project : GROUP4 CE KMITL 53<br><br>
 - Android Appication<br><br>
 - For support Robot(Make from NodeMCUv2 and HC05 Bluetooth module) control by touchscreen and voice command via bluetooth<br><br>
