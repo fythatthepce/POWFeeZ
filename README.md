@@ -5,6 +5,7 @@ Project : GROUP4 CE KMITL 53<br><br>
 - Can use Image Processing function with xml by OpenCV<br>
 <br><br><br>
  Original Control v1 for support POWFeeZ Droid :<br>
+ > http://opencv.org/releases.html<br><br>
  > https://github.com/fythatthepce/sound2<br><br>
 <br>
 
