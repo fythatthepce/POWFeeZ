@@ -8,5 +8,5 @@ Project:GROUP4 CE KMITL 2017<br>
 <br>
 
 
-<B>HOW TO MAKE PROJECT AND BUG FIX WITH OPENCV<B><br>
+<B>TUTORIAL AND BUG FIX WITH OPENCV<B><br>
 >>https://drive.google.com/open?id=0B8Y8tkQets1HLWRXbWJNYzctdVk<br>
