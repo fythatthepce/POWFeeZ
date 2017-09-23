@@ -1,7 +1,7 @@
 <H1>POWFeez Droid</H1>
-Project : GROUP4 CE KMITL 53<br>
-- Android Appication<br>
-- For support Robot(Make from NodeMCUv2 and HC05 Bluetooth module) control by touchscreen and voice command via bluetooth<br>
+Project : GROUP4 CE KMITL 53<br><br>
+- Android Appication<br><br>
+- For support Robot(Make from NodeMCUv2 and HC05 Bluetooth module) control by touchscreen and voice command via bluetooth<br><br>
 - Can use Image Processing function with xml by OpenCV<br>
 
 <br>
