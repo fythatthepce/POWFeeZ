@@ -8,13 +8,13 @@ Project : GROUP4 CE KMITL 53<br>
 <br>
 
 <B>TUTORIAL AND BUG FIX WITH OPENCV<B><br>
- >> https://drive.google.com/open?id=0B8Y8tkQets1HLWRXbWJNYzctdVk<br><br>
+ > https://drive.google.com/open?id=0B8Y8tkQets1HLWRXbWJNYzctdVk<br><br>
 
 <B>OpenCV<B><br>
- >> http://opencv.org/releases.html<br><br>
+ > http://opencv.org/releases.html<br><br>
   
   
 <B>Image Processing Tool<B><br>
   - Make interest object xml<br>
-  >>https://github.com/fythatthepce/haar-classifier-training/<br><br>
+ > https://github.com/fythatthepce/haar-classifier-training/<br><br>
   
