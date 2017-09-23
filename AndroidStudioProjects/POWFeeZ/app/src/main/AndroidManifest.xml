@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +15,8 @@
         android:roundIcon="@drawable/robot"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".selectdetectmain"
+        <activity
+            android:name=".DeviceList"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,10 +24,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetectMain1"
-            android:screenOrientation="landscape"
-        />
-
+        <activity
+            android:name=".selectdetectmain"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DetectMain1"
+            android:screenOrientation="landscape" />
+        <activity android:name=".SelectControl" />
+        <activity android:name=".TouchControl" />
+        <activity android:name=".SoundControl"></activity>
     </application>
 
 </manifest>
