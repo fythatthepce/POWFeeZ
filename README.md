@@ -15,11 +15,10 @@ Project : GROUP4 CE KMITL 53<br><br>
  ref1 : https://github.com/fythatthepce/MatchObj2<br>
  ref2 : https://github.com/michaeltroger/template-matching<br>
  
- <br><br>
- 
 <br>
 <br>
 <br>
+
 
 <B>OpenCV configuration in Android Studio</B><br>
  > https://drive.google.com/open?id=0B8Y8tkQets1HZ3kwWnFqQ1ZVc2c<br><br>
