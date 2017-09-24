@@ -6,11 +6,12 @@ Project : GROUP4 CE KMITL 53<br><br>
 <br><br><br>
 
  <B>Reference support : </B><br><br>
- Original Control v1 for support POWFeeZ Droid : https://github.com/fythatthepce/sound2<br>
- Image Matching with green(Bug) : <br>
+ 1.Original Control v1 for support POWFeeZ Droid : https://github.com/fythatthepce/sound2<br><br>
+ 2.Image Matching with green(Bug) : <br>
  ref1 : https://github.com/fythatthepce/MatchObj1<br>
  ref2 : https://github.com/akshika47/OpencvAndroid<br>
- Image Matching with square : <br>
+ <br>
+ 3.Image Matching with square : <br>
  ref1 : https://github.com/fythatthepce/MatchObj2<br>
  ref2 : https://github.com/michaeltroger/template-matching<br>
  
