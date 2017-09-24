@@ -16,18 +16,18 @@ Project : GROUP4 CE KMITL 53<br><br>
 <br>
 <br>
 
-<B>OpenCV configuration in Android Studio<B><br>
+<B>OpenCV configuration in Android Studio</B><br>
  > https://drive.google.com/open?id=0B8Y8tkQets1HZ3kwWnFqQ1ZVc2c<br><br>
  
-<B>TUTORIAL AND BUG FIX WITH OPENCV<B><br>
+<B>TUTORIAL AND BUG FIX WITH OPENCV</B><br>
  > https://drive.google.com/open?id=0B8Y8tkQets1HLWRXbWJNYzctdVk<br><br>
 
-<B>OpenCV<B><br>
+<B>OpenCV</B><br>
  > http://opencv.org/releases.html<br><br>
   
 <BR><BR><BR>
  
-<B>Image Processing Tool<B><br>
+<B>Image Processing Tool</B><br>
   - Make interest object xml<br>
  > https://github.com/fythatthepce/haar-classifier-training/<br><br>
   
