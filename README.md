@@ -6,7 +6,7 @@ Project : GROUP4 CE KMITL 53<br><br>
 <br><br><br>
 
  <B>Reference support : </B><br><br>
- Original Control v1 for support POWFeeZ Droid : https://github.com/fythatthepce/sound2<br><br>
+ > Original Control v1 for support POWFeeZ Droid : https://github.com/fythatthepce/sound2<br><br>
 
  
 <br>
