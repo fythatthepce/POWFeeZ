@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageButton
+        android:id="@+id/touch"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="32dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/touchnin"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:id="@+id/sound"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="41dp"
+        android:adjustViewBounds="true"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/mic2"
+        android:layout_marginRight="38dp"
+        android:layout_marginEnd="38dp"
+        android:layout_below="@+id/touch"
+        android:layout_toLeftOf="@+id/ball"
+        android:layout_toStartOf="@+id/ball" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="Select Mode"
+        android:textSize="25sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:id="@+id/joy"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="19dp"
+        android:adjustViewBounds="true"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/joy"
+        android:layout_below="@+id/ball"
+        android:layout_alignLeft="@+id/sound"
+        android:layout_alignStart="@+id/sound" />
+
+    <ImageButton
+        android:id="@+id/ball"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="62dp"
+        android:layout_marginRight="62dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/shoot"
+        android:layout_alignTop="@+id/sound"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:id="@+id/face"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/face"
+        android:layout_alignTop="@+id/joy"
+        android:layout_alignLeft="@+id/ball"
+        android:layout_alignStart="@+id/ball" />
+
+</RelativeLayout>

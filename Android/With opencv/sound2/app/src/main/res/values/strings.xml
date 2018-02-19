@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">sound2</string>
+    <string name="title_activity_select_control">SelectControl</string>
+    <string name="title_activity_camcv">camcv</string>
+</resources>
