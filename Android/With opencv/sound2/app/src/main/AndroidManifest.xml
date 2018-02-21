@@ -4,20 +4,21 @@
 
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
-
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="PFdriod"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DeviceList">
+        <activity
+            android:name=".DeviceList"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,11 +44,35 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".camcv"
+            android:configChanges="keyboardHidden|orientation"
             android:label="@string/title_activity_camcv"
             android:screenOrientation="landscape"
-            android:configChanges="keyboardHidden|orientation"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
+        <activity android:name=".facedetect" />
 
+        <activity
+            android:name=".SelectColor"
+            android:label="@string/title_activity_select_color"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".camcvred"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="camcvred"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
+
+        <activity
+            android:name=".camcvgreen"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="camcvgreen"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"></activity>
+
+        <activity android:name=".camcvblue"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="camcvblue"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">
         </activity>
     </application>
 

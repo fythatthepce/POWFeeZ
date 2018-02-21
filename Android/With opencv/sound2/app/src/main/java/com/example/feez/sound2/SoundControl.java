@@ -4,33 +4,19 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.speech.RecognizerIntent;
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Locale;
 import android.widget.Toast;
-
-
-
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
-
-
-import java.io.IOException;
 import java.util.UUID;
-
-
-
 
 
 
@@ -57,7 +43,6 @@ public class SoundControl extends AppCompatActivity {
 
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,55 +57,15 @@ public class SoundControl extends AppCompatActivity {
         disconnect = (Button)findViewById(R.id.button1);
 
 
-
-
-
         //connect bluetooth
         new ConnectBT().execute(); //Call the class to connect
 
         openMic.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                btnToOpenMic();
+                OpenMic();
             }
         });
-
-
-
-        /*
-        on.setOnTouchListener (new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch(event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        if (btSocket!=null)
-                        {
-                            try
-                            {
-                                btSocket.getOutputStream().write("RIGHT".toString().getBytes());
-                            }
-                            catch (IOException e)
-                            {
-                                msg("Error");
-                            }
-                        }
-                        break;
-                    case MotionEvent.ACTION_UP:
-                    {
-                        try
-                        {
-                            btSocket.getOutputStream().write("STOP".toString().getBytes());
-                        }
-                        catch (IOException e)
-                        {
-                            msg("Error");
-                        }
-                    }
-                        break;
-                }
-                return false;
-            }
-        });*/
 
         disconnect.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -128,21 +73,16 @@ public class SoundControl extends AppCompatActivity {
                 Disconnect();
             }
         });
-
-
-
-
-
     }//main
 
 
-    //function
-    private void btnToOpenMic(){
+    //SOUND
+    public void OpenMic(){
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        //intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US");
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,"Speak to Control ...");
+        //intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS,100);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "th-TH");
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,"พูดเพื่อสั่งงาน ...");
 
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(intent, 10);
@@ -153,115 +93,50 @@ public class SoundControl extends AppCompatActivity {
     }
 
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        String str1 = "ขวา";
+        String str2 = "ซ้าย";
+        String str3 = "หน้า";
+        String str4 = "หลัง";
+        String str5 = "หยุด";
+
 
         switch(requestCode){
             case 10:{
                 if (resultCode == RESULT_OK && null!= data){
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    //showVoiceText.setText(result.get(0));
-
-
-                    //if sound = left show welcome left
-                    if(result.contains("left") || result.contains("rest") || result.contains("text") || result.contains("yes")) {
-                        showVoiceText.setText("Left");
-
-                        if (btSocket!=null)
-                        {
-                            try
-                            {
-                                btSocket.getOutputStream().write("LEFT".toString().getBytes());
-                            }
-                            catch (IOException e)
-                            {
-                                msg("Error");
-                            }
-                        }
-
-
-
-                    }else if(result.contains("right") || result.contains("light") ||result.contains("flight") ){
-
-                        showVoiceText.setText("Right");
-
-                        if (btSocket!=null)
-                        {
-                            try
-                            {
-                                btSocket.getOutputStream().write("RIGHT".toString().getBytes());
-                            }
-                            catch (IOException e)
-                            {
-                                msg("Error");
-                            }
-                        }
-
-                    }else if(result.contains("go") || result.contains("call") ){
-
-                        showVoiceText.setText("Go");
-
-                        if (btSocket!=null)
-                        {
-                            try
-                            {
-                                btSocket.getOutputStream().write("GO".toString().getBytes());
-                            }
-                            catch (IOException e)
-                            {
-                                msg("Error");
-                            }
-                        }
-                    }
-
-                    else if(result.contains("back") || result.contains("black")) {
-                        showVoiceText.setText("Back");
-
-                        if (btSocket!=null)
-                        {
-                            try
-                            {
-                                btSocket.getOutputStream().write("BACK".toString().getBytes());
-                            }
-                            catch (IOException e)
-                            {
-                                msg("Error");
-                            }
-                        }
-                    }
-
-
-
-                    else
-                        //if(result.contains("break") || result.contains("bet") || result.contains("brick") || result.contains("brett") || result.contains("bear") || result.contains("babe") || result.contains("brea") || result.contains("wreck") || result.contains("bed") ||   result.contains("bitch") ||  result.contains("make") ||  result.contains("brick") )  {
-                        if(result.contains("stop") || result.contains("sup") || result.contains("stock") || result.contains("stuff") || result.contains("so")  ){
-                        showVoiceText.setText("STOP");
-
-                        if (btSocket!=null)
-                        {
-                            try
-                            {
-                                btSocket.getOutputStream().write("BREAK".toString().getBytes());
-                            }
-                            catch (IOException e)
-                            {
-                                msg("Error");
-                            }
-                        }
-
+                    if(result.get(0).contains(str1)){
+                        right_command();
+                        showVoiceText.setText("ไปทางขวา ...");
+                    }else if(result.get(0).contains(str2)){
+                        left_command();
+                        showVoiceText.setText("ไปทางซ้าย ...");
+                    }else if(result.get(0).contains(str3)){
+                        forward_command();
+                        showVoiceText.setText("ไปข้างหน้า ...");
+                    }else if(result.get(0).contains(str4)) {
+                        backward_command();
+                        showVoiceText.setText("ถอยหลัง ...");
+                    }else if(result.get(0).contains(str5)){
+                        stop_command();
+                        showVoiceText.setText("หยุด ...");
                     }else{
-                        showVoiceText.setText("No command : " + result.get(0));
+                        stop_command();
+                        showVoiceText.setText("ผิดพลาด กรุณาพูดใหม่อีกครั้ง");
                     }
+
                 }
                 break;
             }
-        }
+        }//END switch case
     }
 
 
-    // fast way to call Toast
+
+    //Call Toast
     private void msg(String s)
     {
         Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
@@ -332,7 +207,78 @@ public class SoundControl extends AppCompatActivity {
             }
         }
         finish(); //return to the first layout
-
     }
+
+    //send data to arduino
+    private void right_command(){
+        if (btSocket!=null)
+        {
+            try
+            {
+                btSocket.getOutputStream().write("RIGHT".toString().getBytes());
+            }
+            catch (IOException e)
+            {
+                msg("Error");
+            }
+        }
+    }
+
+    private void left_command(){
+        if (btSocket!=null)
+        {
+            try
+            {
+                btSocket.getOutputStream().write("LEFT".toString().getBytes());
+            }
+            catch (IOException e)
+            {
+                msg("Error");
+            }
+        }
+    }
+
+    private void forward_command(){
+        if (btSocket!=null)
+        {
+            try
+            {
+                btSocket.getOutputStream().write("GO".toString().getBytes());
+            }
+            catch (IOException e)
+            {
+                msg("Error");
+            }
+        }
+    }
+
+    private void backward_command(){
+        if (btSocket!=null)
+        {
+            try
+            {
+                btSocket.getOutputStream().write("BACK".toString().getBytes());
+            }
+            catch (IOException e)
+            {
+                msg("Error");
+            }
+        }
+    }
+
+    private void stop_command(){
+        if (btSocket!=null)
+        {
+            try
+            {
+                btSocket.getOutputStream().write("STOP".toString().getBytes());
+            }
+            catch (IOException e)
+            {
+                msg("Error");
+            }
+        }
+    }
+
 
 }//scope

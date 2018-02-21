@@ -1,51 +1,47 @@
 package com.example.feez.sound2;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.Bundle;
-
-import org.opencv.android.CameraBridgeViewBase;
-import org.opencv.core.Mat;
-
-import android.app.ActivityManager;
 import android.util.Log;
 import android.view.WindowManager;
+import android.widget.Toast;
+
 import org.opencv.android.BaseLoaderCallback;
+import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.JavaCameraView;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
-
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
-
+import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
+
+import java.io.IOException;
+import java.util.UUID;
+
 import static android.content.ContentValues.TAG;
 import static org.opencv.imgproc.Imgproc.CV_HOUGH_GRADIENT;
 import static org.opencv.imgproc.Imgproc.GaussianBlur;
 import static org.opencv.imgproc.Imgproc.putText;
 import static org.opencv.imgproc.Imgproc.rectangle;
 
-import android.os.Handler;
-import android.os.Looper;
-import android.widget.Toast;
+public class camcvblue extends Activity implements CameraBridgeViewBase.CvCameraViewListener2{//SCOPE
 
-import java.io.IOException;
-import java.util.UUID;
-
-
-public class camcv extends Activity implements CameraBridgeViewBase.CvCameraViewListener2{//scope
 
     //Bluetooth
     String address = null;
-    //ArrayList<String> color = null;
     String color = null;
 
     private ProgressDialog progress;
@@ -68,34 +64,14 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
     }
 
 
-    //YELLOW
-    int iLowH_Y = 80;
-    int iLowS_Y = 100;
-    int iLowV_Y = 100;
+    //BLUE
+    int iLowH_B = -10;
+    int iLowS_B = 100;
+    int iLowV_B = 100;
 
-    int iHighH_Y = 100;
-    int iHighS_Y = 255;
-    int iHighV_Y = 255;
-
-
-    //RED
-    int iLowH_R = 110;
-    int iLowS_R = 100;
-    int iLowV_R = 100;
-
-    int iHighH_R = 130;
-    int iHighS_R = 255;
-    int iHighV_R = 255;
-
-
-    //GREEN
-    int iLowH_G = 50;
-    int iLowS_G = 100;
-    int iLowV_G = 100;
-
-    int iHighH_G = 70;
-    int iHighS_G = 255;
-    int iHighV_G = 255;
+    int iHighH_B = 10;
+    int iHighS_B = 255;
+    int iHighV_B = 255;
 
 
 
@@ -107,11 +83,8 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
     Mat overlay;
 
 
-    Scalar sc1,sc2;
 
-    Scalar sc1_R,sc2_R;
-    Scalar sc1_G,sc2_G;
-    Scalar sc1_Y,sc2_Y;
+    Scalar sc1_B,sc2_B;
 
 
     //RGB color
@@ -166,12 +139,6 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
 
                     overlay = new Mat();
 
-                    /*
-                    //test fail
-                    if(progress!=null) {
-                        progress.dismiss();
-                        progress = null;
-                    }*/
 
                 } break;
                 default:
@@ -182,33 +149,18 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
         }
     };
 
-
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {//main
+    protected void onCreate(Bundle savedInstanceState) {//MAIN
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_camcvblue);
 
         Intent newint = getIntent();
         address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS); //receive the address of the bluetooth device
-        //color = getIntent().getStringArrayListExtra("ListViewClickedValue");
         color = getIntent().getStringExtra("ListViewClickedValue");
-
-        /*
-        if(color == "YELLOW"){
-            sc1 = new Scalar(iLowH_Y,iLowS_Y,iLowV_Y);    //Low HSV
-            sc2 = new Scalar(iHighH_Y,iHighS_Y,iHighV_Y);  //High HSV
-        }else if(color == "RED"){
-            sc1 = new Scalar(iLowH_R,iLowS_R,iLowV_R);
-            sc2 = new Scalar(iHighH_R,iHighS_R,iHighV_R);
-        }else if(color == "GREEN") {
-            sc1 = new Scalar(iLowH_G, iLowS_G, iLowV_G);
-            sc2 = new Scalar(iHighH_G, iHighS_G, iHighV_G);
-        }*/
 
 
         //connect bluetooth
-        new camcv.ConnectBT().execute(); //Call the class to connect
+        new camcvblue.ConnectBT().execute(); //Call the class to connect
 
 
 
@@ -230,45 +182,10 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
         mi = new ActivityManager.MemoryInfo();
         activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
 
-
-
-        //Yellow Scalar
-        sc1_Y = new Scalar(iLowH_Y,iLowS_Y,iLowV_Y);    //Low HSV
-        sc2_Y = new Scalar(iHighH_Y,iHighS_Y,iHighV_Y);  //High HSV
-
-        //RED
-        sc1_R = new Scalar(iLowH_R,iLowS_R,iLowV_R);
-        sc2_R = new Scalar(iHighH_R,iHighS_R,iHighV_R);
-
         //GREEN
-        sc1_G = new Scalar(iLowH_G, iLowS_G, iLowV_G);
-        sc2_G = new Scalar(iHighH_G, iHighS_G, iHighV_G);
-
-
-
-        /*
-        if(color == "YELLOW") {
-            sc1 = sc1_Y;
-            sc2 = sc2_Y;
-        }
-        */
-
-        //Yellow Scalar
-        //sc1 = new Scalar(iLowH_Y,iLowS_Y,iLowV_Y);    //Low HSV
-        //sc2 = new Scalar(iHighH_Y,iHighS_Y,iHighV_Y);  //High HSV
-
-
-
-
-        /*
-        //test fail
-        if(progress!=null) {
-            progress.dismiss();
-            progress = null;
-        }*/
-
-    }//main
-
+        sc1_B = new Scalar(iLowH_B, iLowS_B, iLowV_B);
+        sc2_B = new Scalar(iHighH_B, iHighS_B, iHighV_B);
+    }//MAIN
     // fast way to call Toast
     private void msg(String s)
     {
@@ -295,19 +212,13 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
             }
 
 
-            progress = ProgressDialog.show(camcv.this, "Connecting...", "Please wait!!!");  //show a progress dialog
+            progress = ProgressDialog.show(camcvblue.this, "Connecting...", "Please wait!!!");  //show a progress dialog
         }
 
         @Override
         protected Void doInBackground(Void... devices) //while the progress dialog is shown, the connection is done in background
         {
-            /*
-            //TEST Fail
-            if(progress!=null) {
-                progress.dismiss();
-                progress = null;
-            }
-            */
+
 
             try
             {
@@ -324,13 +235,7 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
             catch (IOException e)
             {
                 ConnectSuccess = false;//if the try failed, you can check the exception here
-                 /*
-                //TEST Fail
-                if(progress!=null) {
-                    progress.dismiss();
-                    progress = null;
-                }
-                */
+
             }
             return null;
         }
@@ -467,12 +372,6 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
     {
 
 
-        /*
-        //test fail
-        if(progress!=null) {
-            progress.dismiss();
-            progress = null;
-        }*/
 
         super.onResume();
         if (!OpenCVLoader.initDebug()) {
@@ -562,8 +461,8 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
         //fix mirror imgHSV
         Core.flip(imgHSV,imgHSV, 1);
 
-        //Yellow color range
-        Core.inRange(imgHSV,sc1_Y,sc2_Y,hue);  //YELLOW
+        //GREEN color range
+        Core.inRange(imgHSV,sc1_B,sc2_B,hue);
         //Core.inRange(imgHSV,sc1,sc2,hue);
         Core.addWeighted(hue, 1.0, hue, 1.0, 0 , hue_image);
 
@@ -646,14 +545,6 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
                 //Draw circle in Torgb
                 Imgproc.circle(Torgb, center, radius ,RGB_RED, 7);
 
-
-                /*
-                //Check point in range
-                Point a_f1 = new Point(23,52);
-                Point a_f2 = new Point(24,52);
-                if( (center == a_f1) || (center == a_f2)){
-                    forward_run();
-                }*/
 
 
                 Point pos_to_show = new Point(30, 50);
@@ -757,21 +648,6 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
     }
 
 
-
-    /*
-    public void connect_bluetooth(){
-        Handler refresh = new Handler(Looper.getMainLooper());
-        refresh.post(new Runnable() {
-            public void run()
-            {
-                Intent newint = getIntent();
-                address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS); //receive the address of the bluetooth device
-
-                //connect bluetooth
-                new camcv.ConnectBT().execute(); //Call the class to connect
-
-            }
-        });
-    }*/
-
 }//scope
+
+

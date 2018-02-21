@@ -1,6 +1,5 @@
 package com.example.feez.sound2;
 
-import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Set;
 
 
-public class DeviceList extends Activity{
+public class DeviceList extends AppCompatActivity{
     //set call variables widget
     Button btnPaired;
     ListView devicelist;
@@ -100,7 +99,6 @@ public class DeviceList extends Activity{
             // Make an intent to start next activity.
             //Intent i = new Intent(DeviceList.this, SoundControl.class);
             Intent i = new Intent(DeviceList.this, SelectControl.class);
-
             //Change the activity.
             i.putExtra(EXTRA_ADDRESS, address); //this will be received at ledControl (class) Activity
             startActivity(i);

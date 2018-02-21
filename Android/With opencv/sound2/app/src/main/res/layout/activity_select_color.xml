@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.feez.sound2.SelectControl">
+    tools:context="com.example.feez.sound2.SelectColor">
+
 
 
     <ListView
@@ -33,7 +34,7 @@
         android:layout_marginLeft="9dp"
         android:layout_marginStart="9dp"
         android:layout_marginTop="10dp"
-        android:text="Select Mode"
+        android:text="Select Ball Color"
         android:textSize="30sp"
         android:textStyle="bold|italic"
         android:layout_alignParentTop="true"
