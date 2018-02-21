@@ -11,20 +11,26 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="PFdriod"
+        android:icon="@mipmap/ic_polymer_black_24dp"
+        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".DeviceList"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".Splashscreen"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <activity
+            android:name=".DeviceList"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".SoundControl"
             android:screenOrientation="portrait" />
@@ -49,7 +55,6 @@
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
         <activity android:name=".facedetect" />
-
         <activity
             android:name=".SelectColor"
             android:label="@string/title_activity_select_color"
@@ -60,20 +65,19 @@
             android:label="camcvred"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
-
         <activity
             android:name=".camcvgreen"
             android:configChanges="keyboardHidden|orientation"
             android:label="camcvgreen"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"></activity>
-
-        <activity android:name=".camcvblue"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".camcvblue"
             android:configChanges="keyboardHidden|orientation"
             android:label="camcvblue"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">
-        </activity>
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
+
     </application>
 
 </manifest>

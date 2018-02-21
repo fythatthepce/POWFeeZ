@@ -1,5 +1,8 @@
 package com.example.feez.sound2;
 
+import android.Manifest;
+import android.app.Activity;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,11 +15,18 @@ import android.bluetooth.BluetoothDevice;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
+
+import com.karan.churi.PermissionManager.PermissionManager;
+
 import java.util.ArrayList;
 import java.util.Set;
 
 
 public class DeviceList extends AppCompatActivity{
+
+    // request Runtime Permission with Permission
+    PermissionManager permissionManager;
+
     //set call variables widget
     Button btnPaired;
     ListView devicelist;
@@ -30,6 +40,12 @@ public class DeviceList extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_list);
+
+        // request Runtime Permission with Permission
+        permissionManager = new PermissionManager() {};
+        permissionManager.checkAndRequestPermissions(this);
+
+
 
         //init variable widget
         btnPaired = (Button)findViewById(R.id.button_scan);
@@ -62,6 +78,8 @@ public class DeviceList extends AppCompatActivity{
             }
         });
     }//main
+
+
 
     private void pairedDevicesList()
     {
@@ -104,5 +122,11 @@ public class DeviceList extends AppCompatActivity{
             startActivity(i);
         }
     };
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+       permissionManager.checkResult(requestCode,permissions,grantResults);
+    }
 }//scope
 

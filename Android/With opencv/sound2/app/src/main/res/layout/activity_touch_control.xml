@@ -25,7 +25,8 @@
         android:layout_marginEnd="19dp"
         android:layout_above="@+id/down"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="11dp" />
 
     <ImageButton
         android:id="@+id/down"
@@ -52,13 +53,13 @@
         android:id="@+id/right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
         app:srcCompat="@drawable/right"
+        android:layout_marginTop="43dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:layout_alignTop="@+id/up"
-        android:layout_alignLeft="@+id/button_disconnect"
-        android:layout_alignStart="@+id/button_disconnect"
-        android:layout_marginTop="30dp" />
+        android:layout_toRightOf="@+id/left"
+        android:layout_toEndOf="@+id/left" />
 
     <RelativeLayout
         android:layout_width="match_parent"
