@@ -415,7 +415,7 @@ public class facedetect extends Activity implements SurfaceHolder.Callback{//SCO
         {
             try
             {
-                btSocket.getOutputStream().write("RIGHT".toString().getBytes());
+                btSocket.getOutputStream().write("RIGHT.".toString().getBytes());
             }
             catch (IOException e)
             {
@@ -429,7 +429,7 @@ public class facedetect extends Activity implements SurfaceHolder.Callback{//SCO
         {
             try
             {
-                btSocket.getOutputStream().write("LEFT".toString().getBytes());
+                btSocket.getOutputStream().write("LEFT.".toString().getBytes());
             }
             catch (IOException e)
             {
@@ -443,7 +443,7 @@ public class facedetect extends Activity implements SurfaceHolder.Callback{//SCO
         {
             try
             {
-                btSocket.getOutputStream().write("GO".toString().getBytes());
+                btSocket.getOutputStream().write("GO.".toString().getBytes());
             }
             catch (IOException e)
             {
@@ -457,7 +457,7 @@ public class facedetect extends Activity implements SurfaceHolder.Callback{//SCO
         {
             try
             {
-                btSocket.getOutputStream().write("BACK".toString().getBytes());
+                btSocket.getOutputStream().write("BACK.".toString().getBytes());
             }
             catch (IOException e)
             {
@@ -471,7 +471,8 @@ public class facedetect extends Activity implements SurfaceHolder.Callback{//SCO
         {
             try
             {
-                btSocket.getOutputStream().write("STOP".toString().getBytes());
+                //btSocket.getOutputStream().write("STOP".toString().getBytes());
+                btSocket.getOutputStream().write("BREAK.".toString().getBytes());
             }
             catch (IOException e)
             {

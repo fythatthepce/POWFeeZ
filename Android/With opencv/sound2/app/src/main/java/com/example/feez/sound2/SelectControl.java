@@ -17,7 +17,7 @@ public class SelectControl extends AppCompatActivity {
     ListView listView;
 
     // Define string array.
-    String[] listValue = new String[] {"Touch Control","Voice Control","Joy Control","Face Detect Control","Ball Detect Control"};
+    String[] listValue = new String[] {"Touch Control","Voice Control","Joy Control","Face Detect Control","Ball Detect Control","Line Follower"};
 
     /*
     ImageButton sound;
@@ -216,8 +216,14 @@ public class SelectControl extends AppCompatActivity {
                     Intent i = new Intent(SelectControl.this,SelectColor.class);
                     i.putExtra(EXTRA_ADDRESS, address);
                     startActivity(i);
-                }
+                }else if(TempListViewClickedValue == "Line Follower"){
+                    Intent newint = getIntent();
+                    address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS);
 
+                    Intent i = new Intent(SelectControl.this,camcvlinefollow.class);
+                    i.putExtra(EXTRA_ADDRESS, address);
+                    startActivity(i);
+                }
 
             }
         });//END LISTVIEW

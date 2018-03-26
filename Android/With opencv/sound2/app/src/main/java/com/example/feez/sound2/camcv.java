@@ -371,7 +371,7 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
         {
             try
             {
-                btSocket.getOutputStream().write("GO".toString().getBytes());
+                btSocket.getOutputStream().write("GO.".toString().getBytes());
             }
             catch (IOException e)
             {
@@ -386,7 +386,7 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
         {
             try
             {
-                btSocket.getOutputStream().write("BACK".toString().getBytes());
+                btSocket.getOutputStream().write("BACK.".toString().getBytes());
             }
             catch (IOException e)
             {
@@ -400,7 +400,7 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
         {
             try
             {
-                btSocket.getOutputStream().write("LEFT".toString().getBytes());
+                btSocket.getOutputStream().write("LEFT.".toString().getBytes());
             }
             catch (IOException e)
             {
@@ -415,7 +415,7 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
         {
             try
             {
-                btSocket.getOutputStream().write("RIGHT".toString().getBytes());
+                btSocket.getOutputStream().write("RIGHT.".toString().getBytes());
             }
             catch (IOException e)
             {
@@ -431,7 +431,8 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
         {
             try
             {
-                btSocket.getOutputStream().write("STOP".toString().getBytes());
+                //btSocket.getOutputStream().write("STOP".toString().getBytes());
+                btSocket.getOutputStream().write("BREAK.".toString().getBytes());
             }
             catch (IOException e)
             {
@@ -440,6 +441,19 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
         }
     }
 
+    private void ball(){
+        if (btSocket!=null)
+        {
+            try
+            {
+                btSocket.getOutputStream().write("BALL.".toString().getBytes());
+            }
+            catch (IOException e)
+            {
+                msg("Error");
+            }
+        }
+    }
 
     private void Disconnect()
     {
@@ -447,7 +461,7 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
         {
             try
             {
-                btSocket.getOutputStream().write("Disconnect".toString().getBytes());
+                btSocket.getOutputStream().write("Disconnect.".toString().getBytes());
                 btSocket.close(); //close connection
             }
             catch (IOException e)
@@ -625,7 +639,8 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
         Point pos_b2 = new Point(426 , 480);   //x width , y height
 
         Torgb.copyTo(overlay);
-        rectangle(Torgb,pos_b1,pos_b2,RGB_CYAN,thick_b);
+        //rectangle(Torgb,pos_b1,pos_b2,RGB_CYAN,thick_b);
+        rectangle(Torgb,pos_b1,pos_b2,RGB_YELLOW,thick_b);
         Core.addWeighted(overlay, 0.3, Torgb, 1 - 0.3, 0 , Torgb);
 
 
@@ -672,16 +687,21 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
 
                 if(circleVec[0] < 213){
                     Imgproc.putText(Torgb,"Left", pos_to_show2, fontface, scale2,RGB_WHITE, thickness2);
-                    left_run();
+                    //left_run();
+                    right_run();
                 }else if(circleVec[0] > 213 && circleVec[0] < 427 && circleVec[1] < 240){
                     Imgproc.putText(Torgb,"Forward", pos_to_show2, fontface, scale2,RGB_WHITE, thickness2);
-                    forward_run();
+                    //forward_run();
+                    ball_run();
                 }else if(circleVec[0] > 213 && circleVec[0] < 427 && circleVec[1] > 240){
-                    Imgproc.putText(Torgb,"Backward", pos_to_show2, fontface, scale2,RGB_WHITE, thickness2);
-                    backward_run();
+                    //Imgproc.putText(Torgb,"Backward", pos_to_show2, fontface, scale2,RGB_WHITE, thickness2);
+                    Imgproc.putText(Torgb,"Forward", pos_to_show2, fontface, scale2,RGB_WHITE, thickness2);
+                    //backward_run();
+                    ball_run();
                 }else if(circleVec[0] > 427){
                     Imgproc.putText(Torgb,"Right", pos_to_show2, fontface, scale2, RGB_WHITE, thickness2);
-                    right_run();
+                    //right_run();
+                    left_run();
                 }
 
             }
@@ -756,6 +776,16 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
         });
     }
 
+
+    public void ball_run(){
+        Handler refresh = new Handler(Looper.getMainLooper());
+        refresh.post(new Runnable() {
+            public void run()
+            {
+                ball();
+            }
+        });
+    }
 
 
     /*

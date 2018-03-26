@@ -1,7 +1,5 @@
 package com.example.feez.sound2;
 
-import android.Manifest;
-import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
