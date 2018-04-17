@@ -13,7 +13,7 @@ OpenCV configuration in Android Studio</B><br>
 <img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/3.jpg"  width="300" height="500" />
 
 <br>
-> Touchscreen
+<B>Touchscreen</B><br>
 
 <img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/4.jpg"  width="500" height="300" />
 
