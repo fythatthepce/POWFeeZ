@@ -19,15 +19,18 @@ OpenCV configuration in Android Studio</B><br>
 <br>
 <B>Voice Control</B><br><br>
 <img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/5.jpg"  width="300" height="500" />
-<img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/5_1.jpg"  width="300" height="500" />
 
 <br>
 <B>Joystick</B><br><br>
 <img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/j1.jpg"  width="300" height="500" />
-<img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/j2.jpg"  width="300" height="500" />
-<img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/j3.jpg"  width="300" height="500" />
 
+<br>
+<B>Face detect Control</B><br><br>
+<img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/6.jpg"  width="300" height="500" />
 
+<br>
+<B>Ball detect Control</B><br><br>
+<img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/7.jpg"  width="300" height="500" />
 
 <br><br>
 
