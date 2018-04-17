@@ -220,7 +220,7 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
             cameraView.setMaxFrameSize(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT);
         }
 
-        cameraView.setCameraIndex(1);  // 0 = rear , 1 = front
+        cameraView.setCameraIndex(0);  // 0 = rear , 1 = front
         cameraView.setCvCameraViewListener(this);
         cameraView.enableView();
         //END SET SCREEN
@@ -441,6 +441,8 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
         }
     }
 
+
+
     private void ball(){
         if (btSocket!=null)
         {
@@ -454,6 +456,52 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
             }
         }
     }
+
+
+    private void ball_back(){
+        if (btSocket!=null)
+        {
+            try
+            {
+                btSocket.getOutputStream().write("BACK100.".toString().getBytes());
+            }
+            catch (IOException e)
+            {
+                msg("Error");
+            }
+        }
+    }
+
+    private void ball_left(){
+        if (btSocket!=null)
+        {
+            try
+            {
+                btSocket.getOutputStream().write("BALLLEFT.".toString().getBytes());
+            }
+            catch (IOException e)
+            {
+                msg("Error");
+            }
+        }
+    }
+
+
+    private void ball_right(){
+        if (btSocket!=null)
+        {
+            try
+            {
+                btSocket.getOutputStream().write("BALLRIGHT.".toString().getBytes());
+            }
+            catch (IOException e)
+            {
+                msg("Error");
+            }
+        }
+    }
+
+
 
     private void Disconnect()
     {
@@ -574,7 +622,7 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
         Imgproc.cvtColor(inputFrame.rgba(),imgHSV,Imgproc.COLOR_BGR2HSV);
 
         //fix mirror imgHSV
-        Core.flip(imgHSV,imgHSV, 1);
+        //Core.flip(imgHSV,imgHSV, 1);
 
         //Yellow color range
         Core.inRange(imgHSV,sc1_Y,sc2_Y,hue);  //YELLOW
@@ -599,19 +647,80 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
         Imgproc.dilate(hue_image, hue_image, new Mat(), new Point(-1, 1), 1);
 
         //fix mirror rgb
-        Core.flip(Torgb,Torgb, 1);
+        //Core.flip(Torgb,Torgb, 1);
 
         //Screen width = 640 , height = 480;
+
+
         //Draw left rectangle
         int thick_l = -1;
-        Point pos_l1 = new Point(0, 0);
-        Point pos_l2 = new Point(213 , 480);   //x width , y height
 
+        //vertical
+        Point pos_l1 = new Point(0, 0);
+        Point pos_l2 = new Point(640 , 160);   //y width , x height
 
         Torgb.copyTo(overlay);
         rectangle(overlay,pos_l1,pos_l2,RGB_PURPLE,thick_l);
         Core.addWeighted(overlay, 0.3, Torgb, 1 - 0.3, 0 , Torgb);
 
+
+        //Draw center rectangle
+        int thick_r = -1;
+        Point pos_r1 = new Point(0, 161);
+        Point pos_r2 = new Point(640 , 320);   //y width , x height
+
+        Torgb.copyTo(overlay);
+        rectangle(Torgb,pos_r1,pos_r2,RGB_GREEN,thick_r);
+        Core.addWeighted(overlay, 0.3, Torgb, 1 - 0.3, 0 , Torgb);
+
+
+        //Draw right rectangle
+        int thick_f = -1;
+        Point pos_f1 = new Point(0, 321);
+        Point pos_f2 = new Point(640 , 480);   //y width , x height
+
+        Torgb.copyTo(overlay);
+        rectangle(Torgb,pos_f1,pos_f2,RGB_YELLOW,thick_f);
+        Core.addWeighted(overlay, 0.3, Torgb, 1 - 0.3, 0 , Torgb);
+
+
+        /*
+        //Draw right rectangle
+        int thick_r = -1;
+        Point pos_r1 = new Point(161, 0);
+        Point pos_r2 = new Point(320 , 640);   //x width , y height
+
+        Torgb.copyTo(overlay);
+        rectangle(Torgb,pos_r1,pos_r2,RGB_GREEN,thick_r);
+        Core.addWeighted(overlay, 0.3, Torgb, 1 - 0.3, 0 , Torgb);
+
+
+        //Draw forward rectangle
+        int thick_f = -1;
+        Point pos_f1 = new Point(321, 0);
+        Point pos_f2 = new Point(480 , 640);   //x width , y height
+
+        Torgb.copyTo(overlay);
+        rectangle(Torgb,pos_f1,pos_f2,RGB_YELLOW,thick_f);
+        Core.addWeighted(overlay, 0.3, Torgb, 1 - 0.3, 0 , Torgb);
+        */
+
+
+
+
+
+
+        /*
+        //Horizontal
+         //Draw left rectangle
+        int thick_l = -1;
+
+        Point pos_l1 = new Point(0, 0);
+        Point pos_l2 = new Point(213 , 480);   //x width , y height
+
+        Torgb.copyTo(overlay);
+        rectangle(overlay,pos_l1,pos_l2,RGB_PURPLE,thick_l);
+        Core.addWeighted(overlay, 0.3, Torgb, 1 - 0.3, 0 , Torgb);
 
         //Draw right rectangle
         int thick_r = -1;
@@ -642,11 +751,25 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
         //rectangle(Torgb,pos_b1,pos_b2,RGB_CYAN,thick_b);
         rectangle(Torgb,pos_b1,pos_b2,RGB_YELLOW,thick_b);
         Core.addWeighted(overlay, 0.3, Torgb, 1 - 0.3, 0 , Torgb);
+        */
 
 
         //Draw circle
         Log.i(TAG, String.valueOf("size: " + circles.cols()) + ", " + String.valueOf(circles.rows()));
-        if (circles.cols() > 0) {
+
+
+
+        if(circles.cols() >= 3 && circles.rows() >= 1) {
+            back_run();
+            Point pos_to_show = new Point(30, 50);
+            //Point pos_to_show2 = new Point(30, 100);
+            int fontface = Core.FONT_HERSHEY_SIMPLEX;
+            double scale = 1.5; //0.4;
+            int thickness = 2;//1;
+            putText(Torgb,"Backward",pos_to_show,fontface, scale, RGB_WHITE, thickness);
+        }
+
+        else if (circles.cols() > 0) {
             //Math.min(circles.cols(), 1) -> 1 Circle
             for (int x=0; x < Math.min(circles.cols(), 1); x++ ) {
                 double circleVec[] = circles.get(0, x);
@@ -685,6 +808,7 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
                 Imgproc.putText(Torgb, str_pos, pos_to_show, fontface, scale, RGB_WHITE, thickness1);
 
 
+                /* Horizontal
                 if(circleVec[0] < 213){
                     Imgproc.putText(Torgb,"Left", pos_to_show2, fontface, scale2,RGB_WHITE, thickness2);
                     //left_run();
@@ -702,6 +826,30 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
                     Imgproc.putText(Torgb,"Right", pos_to_show2, fontface, scale2, RGB_WHITE, thickness2);
                     //right_run();
                     left_run();
+                }*/
+
+
+                //Vertical
+                //CircleVec[0] = y , circleVec[1] = x
+                //PURPLE ZONE
+                if(circleVec[0] < 640 && circleVec[1] < 160){
+                    Imgproc.putText(Torgb,"Left", pos_to_show2, fontface, scale2,RGB_WHITE, thickness2);
+                    //left_run();
+                    ball_run_left();
+                }
+
+                //GREEN ZONE
+                else if(circleVec[0] < 640 && circleVec[1] > 160 && circleVec[1] < 320) {
+                    Imgproc.putText(Torgb, "Forward", pos_to_show2, fontface, scale2, RGB_WHITE, thickness2);
+                    ball_run();
+                }
+
+
+                //YELLOW ZONE
+                else if(circleVec[0] < 640 && circleVec[1] > 321 && circleVec[1] < 481) {
+                    Imgproc.putText(Torgb,"Right", pos_to_show2, fontface, scale2, RGB_WHITE, thickness2);
+                    //right_run();
+                    ball_run_right();
                 }
 
             }
@@ -786,6 +934,37 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
             }
         });
     }
+
+    public void back_run(){
+        Handler refresh = new Handler(Looper.getMainLooper());
+        refresh.post(new Runnable() {
+            public void run()
+            {
+                ball_back();
+            }
+        });
+    }
+
+    public void ball_run_left(){
+        Handler refresh = new Handler(Looper.getMainLooper());
+        refresh.post(new Runnable() {
+            public void run()
+            {
+                ball_left();
+            }
+        });
+    }
+
+    public void ball_run_right(){
+        Handler refresh = new Handler(Looper.getMainLooper());
+        refresh.post(new Runnable() {
+            public void run()
+            {
+                ball_right();
+            }
+        });
+    }
+
 
 
     /*

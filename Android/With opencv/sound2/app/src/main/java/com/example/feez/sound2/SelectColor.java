@@ -14,7 +14,8 @@ public class SelectColor extends Activity{//SCOPE
     ListView listView;
 
     // Define string array.
-    String[] listValue = new String[] {"RED","GREEN","YELLOW","BLUE"};
+    //String[] listValue = new String[] {"RED","GREEN","YELLOW","BLUE"};
+    String[] listValue = new String[] {"YELLOW"};
 
     //Bluetooth
     String address = null;
@@ -56,6 +57,7 @@ public class SelectColor extends Activity{//SCOPE
                     startActivity(i);
                 }
 
+                /*
                 else if(TempListViewClickedValue == "RED"){
                     Intent newint = getIntent();
                     address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS);
@@ -81,7 +83,7 @@ public class SelectColor extends Activity{//SCOPE
                     Intent i = new Intent(SelectColor.this,camcvblue.class);
                     i.putExtra(EXTRA_ADDRESS, address);
                     startActivity(i);
-                }
+                }*/
 
             }
         });//END LISTVIEW
