@@ -13,9 +13,21 @@ OpenCV configuration in Android Studio</B><br>
 <img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/3.jpg"  width="300" height="500" />
 
 <br>
-<B>Touchscreen</B><br>
-
+<B>Touchscreen</B><br><br>
 <img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/4.jpg"  width="500" height="300" />
+
+<br>
+<B>Voice Control</B><br><br>
+<img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/5.jpg"  width="300" height="500" />
+<img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/5_1.jpg"  width="300" height="500" />
+
+<br>
+<B>Joystick</B><br><br>
+<img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/j1.jpg"  width="300" height="500" />
+<img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/j2.jpg"  width="300" height="500" />
+<img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/j3.jpg"  width="300" height="500" />
+
+
 
 <br><br>
 
