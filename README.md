@@ -3,15 +3,14 @@ Project : GROUP4 CE KMITL 53<br><br>
 - Android Appication<br><br>
 - For support Robot(Make from Arduino and HC05 Bluetooth module) control by touchscreen , voice command and ball detect via bluetooth<br><br>
 
+<B>Set up
+OpenCV configuration in Android Studio</B><br>
+ > https://drive.google.com/open?id=0B8Y8tkQets1HZ3kwWnFqQ1ZVc2c<br><br>
+ 
 ![alt text](https://github.com/fythatthepce/POWFeeZ/blob/master/pic/1.jpg)
 <br><br>
 <img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/2.jpg"  width="300" height="500" />
 <img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/3.jpg"  width="300" height="500" />
-
-<br><br>
-<B>Set up
-OpenCV configuration in Android Studio</B><br>
- > https://drive.google.com/open?id=0B8Y8tkQets1HZ3kwWnFqQ1ZVc2c<br><br>
 
 
 <br><br>
