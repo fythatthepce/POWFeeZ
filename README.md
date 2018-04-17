@@ -5,11 +5,10 @@ Project : GROUP4 CE KMITL 53<br><br>
 
 ![alt text](https://github.com/fythatthepce/POWFeeZ/blob/master/pic/1.jpg)
 <br>
-![alt text](https://github.com/fythatthepce/POWFeeZ/blob/master/pic/2.jpg)
-![alt text](https://github.com/fythatthepce/POWFeeZ/blob/master/pic/3.jpg)
+![](https://github.com/fythatthepce/POWFeeZ/blob/master/pic/2.jpg | width=50)
+![](https://github.com/fythatthepce/POWFeeZ/blob/master/pic/3.jpg | width=50)
 
 <br><br>
-
 <B>Set up
 OpenCV configuration in Android Studio</B><br>
  > https://drive.google.com/open?id=0B8Y8tkQets1HZ3kwWnFqQ1ZVc2c<br><br>
