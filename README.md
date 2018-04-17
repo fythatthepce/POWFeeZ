@@ -4,9 +4,9 @@ Project : GROUP4 CE KMITL 53<br><br>
 - For support Robot(Make from Arduino and HC05 Bluetooth module) control by touchscreen , voice command and ball detect via bluetooth<br><br>
 
 ![alt text](https://github.com/fythatthepce/POWFeeZ/blob/master/pic/1.jpg)
-<br>
-<img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/2.jpg"  width="300" height="400" />
-
+<br><br>
+<img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/2.jpg"  width="300" height="600" />
+<img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/3.jpg"  width="300" height="600" />
 
 <br><br>
 <B>Set up
