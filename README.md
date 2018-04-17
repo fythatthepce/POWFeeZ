@@ -5,8 +5,8 @@ Project : GROUP4 CE KMITL 53<br><br>
 
 ![alt text](https://github.com/fythatthepce/POWFeeZ/blob/master/pic/1.jpg)
 <br><br>
-<img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/2.jpg"  width="300" height="600" />
-<img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/3.jpg"  width="300" height="600" />
+<img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/2.jpg"  width="300" height="500" />
+<img src="https://github.com/fythatthepce/POWFeeZ/blob/master/pic/3.jpg"  width="300" height="500" />
 
 <br><br>
 <B>Set up
