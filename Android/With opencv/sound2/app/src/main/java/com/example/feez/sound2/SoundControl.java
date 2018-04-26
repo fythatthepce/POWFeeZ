@@ -80,7 +80,6 @@ public class SoundControl extends AppCompatActivity {
     public void OpenMic(){
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        //intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS,100);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "th-TH");
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT,"พูดเพื่อสั่งงาน ...");
 
@@ -198,7 +197,7 @@ public class SoundControl extends AppCompatActivity {
         {
             try
             {
-                btSocket.getOutputStream().write("Disconnect.".toString().getBytes());
+                //btSocket.getOutputStream().write("Disconnect.".toString().getBytes());
                 btSocket.close(); //close connection
             }
             catch (IOException e)
@@ -215,7 +214,7 @@ public class SoundControl extends AppCompatActivity {
         {
             try
             {
-                btSocket.getOutputStream().write("RIGHT.".toString().getBytes());
+                btSocket.getOutputStream().write("VORIGHT.".toString().getBytes());
             }
             catch (IOException e)
             {
@@ -229,7 +228,7 @@ public class SoundControl extends AppCompatActivity {
         {
             try
             {
-                btSocket.getOutputStream().write("LEFT.".toString().getBytes());
+                btSocket.getOutputStream().write("VOLEFT.".toString().getBytes());
             }
             catch (IOException e)
             {
@@ -243,7 +242,7 @@ public class SoundControl extends AppCompatActivity {
         {
             try
             {
-                btSocket.getOutputStream().write("GO.".toString().getBytes());
+                btSocket.getOutputStream().write("VOGO.".toString().getBytes());
             }
             catch (IOException e)
             {
@@ -257,7 +256,7 @@ public class SoundControl extends AppCompatActivity {
         {
             try
             {
-                btSocket.getOutputStream().write("BACK.".toString().getBytes());
+                btSocket.getOutputStream().write("VOBACK.".toString().getBytes());
             }
             catch (IOException e)
             {
@@ -272,7 +271,7 @@ public class SoundControl extends AppCompatActivity {
             try
             {
                 //btSocket.getOutputStream().write("STOP".toString().getBytes());
-                btSocket.getOutputStream().write("BREAK.".toString().getBytes());
+                btSocket.getOutputStream().write("VOBREAK.".toString().getBytes());
             }
             catch (IOException e)
             {

@@ -32,7 +32,6 @@ public class TouchControl extends AppCompatActivity {
     ImageButton btnRight;
     ImageButton btnBack;
     Button btnDis;
-    //Button btnBreak;
 
     String address = null;
     private ProgressDialog progress;
@@ -61,7 +60,6 @@ public class TouchControl extends AppCompatActivity {
         btnBack = (ImageButton)findViewById(R.id.down);
         btnRight = (ImageButton)findViewById(R.id.right);
         btnDis = (Button)findViewById(R.id.button_disconnect);
-        //btnBreak = (Button)findViewById(R.id.break_motor);
         pg1 = (ProgressBar)findViewById(R.id.progressBar);
 
 
@@ -70,75 +68,6 @@ public class TouchControl extends AppCompatActivity {
         new ConnectBT().execute(); //Call the class to connect
 
 
-        /*
-        //commands to be sent to bluetooth
-
-        btnForward.setOnTouchListener (new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch(event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        Bm="1";
-                        //SendBluetooth(Bm);
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        Bm="0";
-                        break;
-                }
-                return false;
-            }
-        });
-
-
-
-        btnLeft.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        Bm = "2";
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        Bm = "0";
-                        break;
-                }
-                return false;
-            }
-        });
-
-        btnBack.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        Bm = "3";
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        Bm = "0";
-                        break;
-                }
-                return false;
-            }
-        });
-
-        btnRight.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        Bm = "4";
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        Bm = "0";
-                        break;
-                }
-                return false;
-            }
-        });
-        */
-
-
-        //test control v2 smart control
         btnForward.setOnTouchListener (new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -208,54 +137,6 @@ public class TouchControl extends AppCompatActivity {
             }
         });
 
-
-
-
-        //control v1 have  btnBreak
-        /*
-        btnForward.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                forward();
-            }
-        });
-
-
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                backward();
-            }
-        });
-
-        btnLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                left();
-            }
-        });
-
-        btnRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                right();
-            }
-        });
-
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                backward();
-            }
-        });
-
-        btnBreak.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                break_motor();
-            }
-        });*/
-
         btnDis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -272,7 +153,7 @@ public class TouchControl extends AppCompatActivity {
         {
             try
             {
-                btSocket.getOutputStream().write("GO.".toString().getBytes());
+                btSocket.getOutputStream().write("TOGO.".toString().getBytes());
             }
             catch (IOException e)
             {
@@ -286,7 +167,7 @@ public class TouchControl extends AppCompatActivity {
         {
             try
             {
-                btSocket.getOutputStream().write("BACK.".toString().getBytes());
+                btSocket.getOutputStream().write("TOBACK.".toString().getBytes());
             }
             catch (IOException e)
             {
@@ -300,7 +181,7 @@ public class TouchControl extends AppCompatActivity {
         {
             try
             {
-                btSocket.getOutputStream().write("LEFT.".toString().getBytes());
+                btSocket.getOutputStream().write("TOLEFT.".toString().getBytes());
             }
             catch (IOException e)
             {
@@ -314,7 +195,7 @@ public class TouchControl extends AppCompatActivity {
         {
             try
             {
-                btSocket.getOutputStream().write("RIGHT.".toString().getBytes());
+                btSocket.getOutputStream().write("TORIGHT.".toString().getBytes());
             }
             catch (IOException e)
             {
@@ -328,8 +209,7 @@ public class TouchControl extends AppCompatActivity {
         {
             try
             {
-                //btSocket.getOutputStream().write("STOP".toString().getBytes());
-                btSocket.getOutputStream().write("BREAK.".toString().getBytes());
+                btSocket.getOutputStream().write("TOBREAK.".toString().getBytes());
             }
             catch (IOException e)
             {
@@ -340,16 +220,13 @@ public class TouchControl extends AppCompatActivity {
 
 
 
-
-
-
     private void Disconnect()
     {
         if (btSocket!=null) //If the btSocket is busy
         {
             try
             {
-                btSocket.getOutputStream().write("Disconnect.".toString().getBytes());
+                //btSocket.getOutputStream().write("Disconnect.".toString().getBytes());
                 btSocket.close(); //close connection
             }
             catch (IOException e)
@@ -361,13 +238,11 @@ public class TouchControl extends AppCompatActivity {
 
     }
 
-
     // fast way to call Toast
     private void msg(String s)
     {
         Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
     }
-
 
     private class ConnectBT extends AsyncTask<Void, Void, Void>  // UI thread
     {
@@ -382,7 +257,6 @@ public class TouchControl extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... devices) //while the progress dialog is shown, the connection is done in background
         {
-
             try
             {
                 if (btSocket == null || !isBtConnected)

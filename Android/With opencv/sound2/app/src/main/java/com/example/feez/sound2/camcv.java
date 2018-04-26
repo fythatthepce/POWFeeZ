@@ -67,6 +67,13 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
         }
     }
 
+    String Bcenter;
+    String Bleft;
+    String Bright;
+    String Bback;
+
+    int R_BALL;
+    int NUM_BALL;
 
     //YELLOW
     int iLowH_Y = 80;
@@ -166,13 +173,6 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
 
                     overlay = new Mat();
 
-                    /*
-                    //test fail
-                    if(progress!=null) {
-                        progress.dismiss();
-                        progress = null;
-                    }*/
-
                 } break;
                 default:
                 {
@@ -191,20 +191,7 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
 
         Intent newint = getIntent();
         address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS); //receive the address of the bluetooth device
-        //color = getIntent().getStringArrayListExtra("ListViewClickedValue");
         color = getIntent().getStringExtra("ListViewClickedValue");
-
-        /*
-        if(color == "YELLOW"){
-            sc1 = new Scalar(iLowH_Y,iLowS_Y,iLowV_Y);    //Low HSV
-            sc2 = new Scalar(iHighH_Y,iHighS_Y,iHighV_Y);  //High HSV
-        }else if(color == "RED"){
-            sc1 = new Scalar(iLowH_R,iLowS_R,iLowV_R);
-            sc2 = new Scalar(iHighH_R,iHighS_R,iHighV_R);
-        }else if(color == "GREEN") {
-            sc1 = new Scalar(iLowH_G, iLowS_G, iLowV_G);
-            sc2 = new Scalar(iHighH_G, iHighS_G, iHighV_G);
-        }*/
 
 
         //connect bluetooth
@@ -244,29 +231,6 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
         sc1_G = new Scalar(iLowH_G, iLowS_G, iLowV_G);
         sc2_G = new Scalar(iHighH_G, iHighS_G, iHighV_G);
 
-
-
-        /*
-        if(color == "YELLOW") {
-            sc1 = sc1_Y;
-            sc2 = sc2_Y;
-        }
-        */
-
-        //Yellow Scalar
-        //sc1 = new Scalar(iLowH_Y,iLowS_Y,iLowV_Y);    //Low HSV
-        //sc2 = new Scalar(iHighH_Y,iHighS_Y,iHighV_Y);  //High HSV
-
-
-
-
-        /*
-        //test fail
-        if(progress!=null) {
-            progress.dismiss();
-            progress = null;
-        }*/
-
     }//main
 
     // fast way to call Toast
@@ -301,13 +265,7 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
         @Override
         protected Void doInBackground(Void... devices) //while the progress dialog is shown, the connection is done in background
         {
-            /*
-            //TEST Fail
-            if(progress!=null) {
-                progress.dismiss();
-                progress = null;
-            }
-            */
+
 
             try
             {
@@ -324,13 +282,7 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
             catch (IOException e)
             {
                 ConnectSuccess = false;//if the try failed, you can check the exception here
-                 /*
-                //TEST Fail
-                if(progress!=null) {
-                    progress.dismiss();
-                    progress = null;
-                }
-                */
+
             }
             return null;
         }
@@ -338,18 +290,12 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
         @Override
         protected void onPostExecute(Void result) //after the doInBackground, it checks if everything went fine
         {
-            /*
-            //TEST FAIL
-            if(progress!=null) {
-                progress.dismiss();
-                progress = null;
-            }
-            */
+
 
             super.onPostExecute(result);
 
             if (!ConnectSuccess) {
-                msg("Connection Failed. Is it a SPP Bluetooth? Try again.");
+                //msg("Connection Failed. Is it a SPP Bluetooth? Try again.");
                 finish();
             }
             else
@@ -364,163 +310,6 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
     //END Function Bluetooth
 
 
-
-    //Function command to arduino
-    private void forward(){
-        if (btSocket!=null)
-        {
-            try
-            {
-                btSocket.getOutputStream().write("GO.".toString().getBytes());
-            }
-            catch (IOException e)
-            {
-                msg("Error");
-            }
-        }
-    }
-
-
-    private void backward(){
-        if (btSocket!=null)
-        {
-            try
-            {
-                btSocket.getOutputStream().write("BACK.".toString().getBytes());
-            }
-            catch (IOException e)
-            {
-                msg("Error");
-            }
-        }
-    }
-
-    private void left(){
-        if (btSocket!=null)
-        {
-            try
-            {
-                btSocket.getOutputStream().write("LEFT.".toString().getBytes());
-            }
-            catch (IOException e)
-            {
-                msg("Error");
-            }
-        }
-    }
-
-
-    private void right(){
-        if (btSocket!=null)
-        {
-            try
-            {
-                btSocket.getOutputStream().write("RIGHT.".toString().getBytes());
-            }
-            catch (IOException e)
-            {
-                msg("Error");
-            }
-        }
-    }
-
-
-
-    private void break_motor(){
-        if (btSocket!=null)
-        {
-            try
-            {
-                //btSocket.getOutputStream().write("STOP".toString().getBytes());
-                btSocket.getOutputStream().write("BREAK.".toString().getBytes());
-            }
-            catch (IOException e)
-            {
-                msg("Error");
-            }
-        }
-    }
-
-
-
-    private void ball(){
-        if (btSocket!=null)
-        {
-            try
-            {
-                btSocket.getOutputStream().write("BALL.".toString().getBytes());
-            }
-            catch (IOException e)
-            {
-                msg("Error");
-            }
-        }
-    }
-
-
-    private void ball_back(){
-        if (btSocket!=null)
-        {
-            try
-            {
-                btSocket.getOutputStream().write("BACK100.".toString().getBytes());
-            }
-            catch (IOException e)
-            {
-                msg("Error");
-            }
-        }
-    }
-
-    private void ball_left(){
-        if (btSocket!=null)
-        {
-            try
-            {
-                btSocket.getOutputStream().write("BALLLEFT.".toString().getBytes());
-            }
-            catch (IOException e)
-            {
-                msg("Error");
-            }
-        }
-    }
-
-
-    private void ball_right(){
-        if (btSocket!=null)
-        {
-            try
-            {
-                btSocket.getOutputStream().write("BALLRIGHT.".toString().getBytes());
-            }
-            catch (IOException e)
-            {
-                msg("Error");
-            }
-        }
-    }
-
-
-
-    private void Disconnect()
-    {
-        if (btSocket!=null) //If the btSocket is busy
-        {
-            try
-            {
-                btSocket.getOutputStream().write("Disconnect.".toString().getBytes());
-                btSocket.close(); //close connection
-            }
-            catch (IOException e)
-            {
-                msg("Error");
-            }
-        }
-        finish(); //return to the first layout
-
-    }
-    //End Function command to arduino
 
 
     //Function Opencv
@@ -708,8 +497,6 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
 
 
 
-
-
         /*
         //Horizontal
          //Draw left rectangle
@@ -757,9 +544,10 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
         //Draw circle
         Log.i(TAG, String.valueOf("size: " + circles.cols()) + ", " + String.valueOf(circles.rows()));
 
-
+        NUM_BALL = circles.cols();
 
         if(circles.cols() >= 3 && circles.rows() >= 1) {
+            Bback = "IM" + R_BALL + "back";
             back_run();
             Point pos_to_show = new Point(30, 50);
             //Point pos_to_show2 = new Point(30, 100);
@@ -780,23 +568,18 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
 
                 Point center = new Point((int) circleVec[0], (int) circleVec[1]);
                 int radius = (int) circleVec[2];
+                R_BALL = radius;
 
                 //Draw circle in Torgb
                 Imgproc.circle(Torgb, center, radius ,RGB_RED, 7);
 
 
-                /*
-                //Check point in range
-                Point a_f1 = new Point(23,52);
-                Point a_f2 = new Point(24,52);
-                if( (center == a_f1) || (center == a_f2)){
-                    forward_run();
-                }*/
-
 
                 Point pos_to_show = new Point(30, 50);
                 Point pos_to_show2 = new Point(30, 100);
-                String str_pos = String.format("("+"X:"+String.valueOf(circleVec[0])+","+"Y:"+String.valueOf(circleVec[1])+")");
+                String str_pos = String.format("Circle:"+String.valueOf(NUM_BALL)+","+"R:"+String.valueOf(R_BALL)+","+"("+"X:"+String.valueOf(circleVec[0])+","+"Y:"+String.valueOf(circleVec[1])+")");
+                //String str_pos = String.format("("+"X:"+String.valueOf(circleVec[0])+","+"Y:"+String.valueOf(circleVec[1])+")");
+
                 int fontface = Core.FONT_HERSHEY_SIMPLEX;
                 double scale = 0.5;
                 double scale2 = 1.5;
@@ -834,13 +617,16 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
                 //PURPLE ZONE
                 if(circleVec[0] < 640 && circleVec[1] < 160){
                     Imgproc.putText(Torgb,"Left", pos_to_show2, fontface, scale2,RGB_WHITE, thickness2);
-                    //left_run();
+
+                    Bleft = "IM" + R_BALL + "left.";
                     ball_run_left();
                 }
 
                 //GREEN ZONE
                 else if(circleVec[0] < 640 && circleVec[1] > 160 && circleVec[1] < 320) {
                     Imgproc.putText(Torgb, "Forward", pos_to_show2, fontface, scale2, RGB_WHITE, thickness2);
+
+                    Bcenter = "IM" + R_BALL + "center.";
                     ball_run();
                 }
 
@@ -848,7 +634,8 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
                 //YELLOW ZONE
                 else if(circleVec[0] < 640 && circleVec[1] > 321 && circleVec[1] < 481) {
                     Imgproc.putText(Torgb,"Right", pos_to_show2, fontface, scale2, RGB_WHITE, thickness2);
-                    //right_run();
+
+                    Bright = "IM" + R_BALL + "right.";
                     ball_run_right();
                 }
 
@@ -862,7 +649,8 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
             int thickness = 2;//1;
 
             putText(Torgb,"",pos_to_show,fontface, scale, RGB_RED, thickness);
-            stop_run();
+            //stop_run();
+
         }//end drawcircle
 
 
@@ -871,49 +659,8 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
     //END Function Opencv
 
 
-    public void forward_run(){
-        Handler refresh = new Handler(Looper.getMainLooper());
-        refresh.post(new Runnable() {
-            public void run()
-            {
-                forward();
-            }
-        });
-    }
 
-    public void backward_run(){
-        Handler refresh = new Handler(Looper.getMainLooper());
-        refresh.post(new Runnable() {
-            public void run()
-            {
-                backward();
-            }
-        });
-    }
-
-    public void right_run(){
-        Handler refresh = new Handler(Looper.getMainLooper());
-        refresh.post(new Runnable() {
-            public void run()
-            {
-                right();
-            }
-        });
-    }
-
-    public void left_run(){
-        Handler refresh = new Handler(Looper.getMainLooper());
-        refresh.post(new Runnable() {
-            public void run()
-            {
-                left();
-            }
-        });
-    }
-
-
-
-
+    /*
     public void stop_run(){
         Handler refresh = new Handler(Looper.getMainLooper());
         refresh.post(new Runnable() {
@@ -922,7 +669,7 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
                 break_motor();
             }
         });
-    }
+    }*/
 
 
     public void ball_run(){
@@ -935,15 +682,6 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
         });
     }
 
-    public void back_run(){
-        Handler refresh = new Handler(Looper.getMainLooper());
-        refresh.post(new Runnable() {
-            public void run()
-            {
-                ball_back();
-            }
-        });
-    }
 
     public void ball_run_left(){
         Handler refresh = new Handler(Looper.getMainLooper());
@@ -966,21 +704,120 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
     }
 
 
-
-    /*
-    public void connect_bluetooth(){
+    public void back_run(){
         Handler refresh = new Handler(Looper.getMainLooper());
         refresh.post(new Runnable() {
             public void run()
             {
-                Intent newint = getIntent();
-                address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS); //receive the address of the bluetooth device
-
-                //connect bluetooth
-                new camcv.ConnectBT().execute(); //Call the class to connect
-
+                ball_back();
             }
         });
+    }
+
+
+
+    /*
+    //Function command to arduino
+    private void break_motor(){
+        if (btSocket!=null)
+        {
+            try
+            {
+                btSocket.getOutputStream().write("IM0BREAK.".toString().getBytes());
+            }
+            catch (IOException e)
+            {
+                //msg("Error");
+            }
+        }
     }*/
+
+
+
+    private void ball(){
+        if (btSocket!=null)
+        {
+            try
+            {
+                //btSocket.getOutputStream().write("BALL.".toString().getBytes());
+                btSocket.getOutputStream().write(Bcenter.toString().getBytes());
+            }
+            catch (IOException e)
+            {
+                //msg("Error");
+            }
+        }
+    }
+
+
+
+    private void ball_back(){
+        if (btSocket!=null)
+        {
+            try
+            {
+                //btSocket.getOutputStream().write("BACK100.".toString().getBytes());
+                btSocket.getOutputStream().write(Bback.toString().getBytes());
+            }
+            catch (IOException e)
+            {
+                //msg("Error");
+            }
+        }
+    }
+
+    private void ball_left(){
+        if (btSocket!=null)
+        {
+            try
+            {
+                //btSocket.getOutputStream().write("BALLLEFT.".toString().getBytes());
+                btSocket.getOutputStream().write(Bleft.toString().getBytes());
+            }
+            catch (IOException e)
+            {
+                //msg("Error");
+            }
+        }
+    }
+
+
+    private void ball_right(){
+        if (btSocket!=null)
+        {
+            try
+            {
+                //btSocket.getOutputStream().write("BALLRIGHT.".toString().getBytes());
+                btSocket.getOutputStream().write(Bright.toString().getBytes());
+            }
+            catch (IOException e)
+            {
+                //msg("Error");
+            }
+        }
+    }
+
+
+
+    private void Disconnect()
+    {
+        if (btSocket!=null) //If the btSocket is busy
+        {
+            try
+            {
+                //btSocket.getOutputStream().write("Disconnect.".toString().getBytes());
+                btSocket.close(); //close connection
+            }
+            catch (IOException e)
+            {
+                //msg("Error");
+            }
+        }
+        finish(); //return to the first layout
+
+    }
+    //End Function command to arduino
+
+
 
 }//scope

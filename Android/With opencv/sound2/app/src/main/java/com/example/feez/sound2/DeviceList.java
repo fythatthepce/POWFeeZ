@@ -93,7 +93,6 @@ public class DeviceList extends AppCompatActivity{
         }
         else
         {
-            //Toast.makeText(getApplicationContext(), "No Paired Bluetooth Devices Found.", Toast.LENGTH_LONG).show();
             Intent settings_intent = new Intent(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS);
             startActivityForResult(settings_intent, 0);
         }
@@ -113,8 +112,8 @@ public class DeviceList extends AppCompatActivity{
             String address = info.substring(info.length() - 17);
 
             // Make an intent to start next activity.
-            //Intent i = new Intent(DeviceList.this, SoundControl.class);
             Intent i = new Intent(DeviceList.this, SelectControl.class);
+
             //Change the activity.
             i.putExtra(EXTRA_ADDRESS, address); //this will be received at ledControl (class) Activity
             startActivity(i);
