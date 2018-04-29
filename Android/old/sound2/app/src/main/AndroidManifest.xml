@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.feez.sound2">
+
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_polymer_black_24dp"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".Splashscreen"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".DeviceList"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SoundControl"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SelectControl"
+            android:label="@string/title_activity_select_control"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".TouchControl"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".joycontrol"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AccControl"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".camcv"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/title_activity_camcv"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
+        <activity android:name=".facedetect" />
+        <activity
+            android:name=".SelectColor"
+            android:label="@string/title_activity_select_color"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".camcvred"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="camcvred"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".camcvgreen"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="camcvgreen"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".camcvblue"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="camcvblue"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
+        <activity android:name=".humancv"></activity>
+    </application>
+
+</manifest>
