@@ -219,14 +219,15 @@ public class SelectControl extends AppCompatActivity {
                 }
 
                 /*
-                else if(TempListViewClickedValue == "Line Follower"){
+                else if(TempListViewClickedValue == "TEST"){
                     Intent newint = getIntent();
                     address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS);
 
-                    Intent i = new Intent(SelectControl.this,camcvlinefollow.class);
+                    Intent i = new Intent(SelectControl.this,humancv.class);
                     i.putExtra(EXTRA_ADDRESS, address);
                     startActivity(i);
                 }*/
+
 
             }
         });//END LISTVIEW

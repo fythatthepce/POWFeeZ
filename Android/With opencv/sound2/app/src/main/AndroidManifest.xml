@@ -75,14 +75,7 @@
             android:label="camcvblue"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
-
-        <activity
-            android:name=".camcvlinefollow"
-            android:configChanges="keyboardHidden|orientation"
-            android:label="camcvlinefollow"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
-        </activity>
+        <activity android:name=".humancv"></activity>
     </application>
 
 </manifest>

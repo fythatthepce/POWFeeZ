@@ -7,6 +7,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -44,7 +45,7 @@ public class joycontrol extends Activity  {
 
     RelativeLayout layout_joystick;
     ImageView image_joystick, image_border;
-    TextView textView5;
+    TextView textView2,textView5;
 
     JoyStickClass js;
 
@@ -71,61 +72,244 @@ public class joycontrol extends Activity  {
         new joycontrol.ConnectBT().execute(); //Call the class to connect
 
         textView5 = (TextView)findViewById(R.id.textView5);
+        //textView2 = (TextView)findViewById(R.id.textView2);
+
 
         layout_joystick = (RelativeLayout)findViewById(R.id.layout_joystick);
 
         js = new JoyStickClass(getApplicationContext()
                 , layout_joystick, R.drawable.image_button);
-        js.setStickSize(200, 200);
-        //js.setLayoutSize(500, 500);
-        js.setLayoutSize(450, 450);
+
+        js.setStickSize(150, 150);
+        //js.setStickSize(200, 200);
+
+
+
+        js.setLayoutSize(500, 500);
+        //js.setLayoutSize(450, 450);
+
+
+        //ความโปร่ง
         js.setLayoutAlpha(150);
         js.setStickAlpha(100);
 
         //js.setOffset(90);
-        js.setOffset(170);
+        //js.setOffset(170);
+        js.setOffset(100);
         js.setMinimumDistance(50);
+
+
+
 
         layout_joystick.setOnTouchListener(new OnTouchListener() {
             public boolean onTouch(View arg0, MotionEvent arg1) {
                 js.drawStick(arg1);
                 if(arg1.getAction() == MotionEvent.ACTION_DOWN || arg1.getAction() == MotionEvent.ACTION_MOVE)
                 {
+                    //textView2.setText("X : " + String.valueOf(js.getX()));
+                    //textView8.setText("Y : " + String.valueOf(js.getY()));
+                    //textView2.setText("D : " + String.valueOf(js.getDistance()));
+
                     int direction = js.get8Direction();
                     //int direction = js.get4Direction();
 
                     if(direction == JoyStickClass.STICK_UP) {
                         textView5.setText("GO");
-                        forward();
+
+                        if(js.getDistance() >= 0 && js.getDistance() <= 100)
+                        {
+                            //zone1
+                            forward1();
+                        }else
+                        {
+                            //zone2
+                            forward2();
+                        }
+
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                // Do something after 5s = 5000ms
+                                //buttons[inew][jnew].setBackgroundColor(Color.BLACK);
+                            }
+                        }, 500);
+
                     } else if(direction == JoyStickClass.STICK_RIGHT) {
                         textView5.setText("RIGHT");
-                        right();
+
+
+                        if(js.getDistance() >= 0 && js.getDistance() <= 100)
+                        {
+                            //zone1
+                            right1();
+                        }else {
+                            //zone2
+                            right2();
+                        }
+
+
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                // Do something after 5s = 5000ms
+                                //buttons[inew][jnew].setBackgroundColor(Color.BLACK);
+                            }
+                        }, 500);
                     } else if(direction == JoyStickClass.STICK_DOWN) {
                         textView5.setText("DOWN");
-                        backward();
+
+                        if(js.getDistance() >= 0 && js.getDistance() <= 100)
+                        {
+                            //zone1
+                            backward1();
+                        }else {
+                            //zone2
+                            backward2();
+                        }
+
+
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                // Do something after 5s = 5000ms
+                                //buttons[inew][jnew].setBackgroundColor(Color.BLACK);
+                            }
+                        }, 500);
                     } else if(direction == JoyStickClass.STICK_LEFT) {
                         textView5.setText("LEFT");
-                        left();
+
+
+                        if(js.getDistance() >= 0 && js.getDistance() <= 100)
+                        {
+                            //zone1
+                            left1();
+                        }else {
+                            //zone2
+                            left2();
+                        }
+
+
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                // Do something after 5s = 5000ms
+                                //buttons[inew][jnew].setBackgroundColor(Color.BLACK);
+                            }
+                        }, 500);
                     } else if(direction == JoyStickClass.STICK_NONE) {
                         textView5.setText("STOP");
                         break_motor();
+
+
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                // Do something after 5s = 5000ms
+                                //buttons[inew][jnew].setBackgroundColor(Color.BLACK);
+                            }
+                        }, 500);
                     }else if(direction == JoyStickClass.STICK_UPRIGHT) {
                         textView5.setText("UPRIGHT");
-                        upright();
+
+                        if(js.getDistance() >= 0 && js.getDistance() <= 100)
+                        {
+                            //zone1
+                            upright1();
+                        }else {
+                            //zone2
+                            upright2();
+                        }
+
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                // Do something after 5s = 5000ms
+                                //buttons[inew][jnew].setBackgroundColor(Color.BLACK);
+                            }
+                        }, 500);
                     }else if(direction == JoyStickClass.STICK_DOWNRIGHT) {
                         textView5.setText("DOWNRIGHT");
-                        downright();
+
+                        if(js.getDistance() >= 0 && js.getDistance() <= 100)
+                        {
+                            //zone1
+                            downright1();
+                        }else {
+                            //zone2
+                            downright2();
+                        }
+
+
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                // Do something after 5s = 5000ms
+                                //buttons[inew][jnew].setBackgroundColor(Color.BLACK);
+                            }
+                        }, 500);
                     }else if(direction == JoyStickClass.STICK_UPLEFT) {
                         textView5.setText("UPLEFT");
-                        upleft();
+
+                        if(js.getDistance() >= 0 && js.getDistance() <= 100)
+                        {
+                            //zone1
+                            upleft1();
+                        }else {
+                            //zone2
+                            upleft2();
+                        }
+
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                // Do something after 5s = 5000ms
+                                //buttons[inew][jnew].setBackgroundColor(Color.BLACK);
+                            }
+                        }, 500);
                     }else if(direction == JoyStickClass.STICK_DOWNLEFT) {
                         textView5.setText("DOWNLEFT");
-                        downleft();
+
+                        if(js.getDistance() >= 0 && js.getDistance() <= 100)
+                        {
+                            //zone1
+                            downleft1();
+                        }else {
+                            //zone2
+                            downleft2();
+                        }
+
+
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                // Do something after 5s = 5000ms
+                                //buttons[inew][jnew].setBackgroundColor(Color.BLACK);
+                            }
+                        }, 500);
                     }
 
                 } else if(arg1.getAction() == MotionEvent.ACTION_UP) {
                     textView5.setText("");
                     break_motor();
+
+
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Do something after 5s = 5000ms
+                            //buttons[inew][jnew].setBackgroundColor(Color.BLACK);
+                        }
+                    }, 500);
                 }
                 return true;
             }
@@ -136,12 +320,13 @@ public class joycontrol extends Activity  {
 
 
     //function
-    private void forward(){
+    private void forward1(){
         if (btSocket!=null)
         {
             try
             {
-                btSocket.getOutputStream().write("JO2GO.".toString().getBytes());
+                btSocket.getOutputStream().write("JO1GO.".toString().getBytes());
+
             }
             catch (IOException e)
             {
@@ -150,7 +335,36 @@ public class joycontrol extends Activity  {
         }
     }
 
-    private void backward(){
+    private void forward2(){
+        if (btSocket!=null)
+        {
+            try
+            {
+                btSocket.getOutputStream().write("JO2GO.".toString().getBytes());
+
+            }
+            catch (IOException e)
+            {
+                msg("Error");
+            }
+        }
+    }
+
+    private void backward1(){
+        if (btSocket!=null)
+        {
+            try
+            {
+                btSocket.getOutputStream().write("JO1BACK.".toString().getBytes());
+            }
+            catch (IOException e)
+            {
+                msg("Error");
+            }
+        }
+    }
+
+    private void backward2(){
         if (btSocket!=null)
         {
             try
@@ -164,7 +378,22 @@ public class joycontrol extends Activity  {
         }
     }
 
-    private void left(){
+    private void left1(){
+        if (btSocket!=null)
+        {
+            try
+            {
+                btSocket.getOutputStream().write("JO1LEFT.".toString().getBytes());
+            }
+            catch (IOException e)
+            {
+                msg("Error");
+            }
+        }
+    }
+
+
+    private void left2(){
         if (btSocket!=null)
         {
             try
@@ -178,7 +407,21 @@ public class joycontrol extends Activity  {
         }
     }
 
-    private void right(){
+    private void right1(){
+        if (btSocket!=null)
+        {
+            try
+            {
+                btSocket.getOutputStream().write("JO1RIGHT.".toString().getBytes());
+            }
+            catch (IOException e)
+            {
+                msg("Error");
+            }
+        }
+    }
+
+    private void right2(){
         if (btSocket!=null)
         {
             try
@@ -206,7 +449,21 @@ public class joycontrol extends Activity  {
         }
     }
 
-    private void upright(){
+    private void upright1(){
+        if (btSocket!=null)
+        {
+            try
+            {
+                btSocket.getOutputStream().write("JO1UPRIGHT.".toString().getBytes());
+            }
+            catch (IOException e)
+            {
+                msg("Error");
+            }
+        }
+    }
+
+    private void upright2(){
         if (btSocket!=null)
         {
             try
@@ -220,7 +477,22 @@ public class joycontrol extends Activity  {
         }
     }
 
-    private void downright(){
+
+    private void downright1(){
+        if (btSocket!=null)
+        {
+            try
+            {
+                btSocket.getOutputStream().write("JO1DOWNRIGHT.".toString().getBytes());
+            }
+            catch (IOException e)
+            {
+                msg("Error");
+            }
+        }
+    }
+
+    private void downright2(){
         if (btSocket!=null)
         {
             try
@@ -234,7 +506,21 @@ public class joycontrol extends Activity  {
         }
     }
 
-    private void upleft(){
+    private void upleft1(){
+        if (btSocket!=null)
+        {
+            try
+            {
+                btSocket.getOutputStream().write("JO1UPLEFT.".toString().getBytes());
+            }
+            catch (IOException e)
+            {
+                msg("Error");
+            }
+        }
+    }
+
+    private void upleft2(){
         if (btSocket!=null)
         {
             try
@@ -249,7 +535,21 @@ public class joycontrol extends Activity  {
     }
 
 
-    private void downleft(){
+    private void downleft1(){
+        if (btSocket!=null)
+        {
+            try
+            {
+                btSocket.getOutputStream().write("JO1DOWNLEFT.".toString().getBytes());
+            }
+            catch (IOException e)
+            {
+                msg("Error");
+            }
+        }
+    }
+
+    private void downleft2(){
         if (btSocket!=null)
         {
             try

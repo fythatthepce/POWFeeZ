@@ -24,7 +24,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:text="PowFeez Droid"
-        android:textSize="45sp"
+        android:textSize="35sp"
         android:textStyle="bold" />
 
     <TextView

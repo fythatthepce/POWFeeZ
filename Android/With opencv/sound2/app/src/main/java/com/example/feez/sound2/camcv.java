@@ -445,8 +445,11 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
         int thick_l = -1;
 
         //vertical
+        //Point pos_l1 = new Point(0, 0);
+        //Point pos_l2 = new Point(640 , 160);   //y width , x height
         Point pos_l1 = new Point(0, 0);
-        Point pos_l2 = new Point(640 , 160);   //y width , x height
+        Point pos_l2 = new Point(640 , 140);   //y width , x height
+
 
         Torgb.copyTo(overlay);
         rectangle(overlay,pos_l1,pos_l2,RGB_PURPLE,thick_l);
@@ -455,8 +458,10 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
 
         //Draw center rectangle
         int thick_r = -1;
-        Point pos_r1 = new Point(0, 161);
-        Point pos_r2 = new Point(640 , 320);   //y width , x height
+        //Point pos_r1 = new Point(0, 161);
+        //Point pos_r2 = new Point(640 , 320);   //y width , x height
+        Point pos_r1 = new Point(0, 141);
+        Point pos_r2 = new Point(640 , 340);   //y width , x height
 
         Torgb.copyTo(overlay);
         rectangle(Torgb,pos_r1,pos_r2,RGB_GREEN,thick_r);
@@ -465,8 +470,11 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
 
         //Draw right rectangle
         int thick_f = -1;
-        Point pos_f1 = new Point(0, 321);
+        //Point pos_f1 = new Point(0, 321);
+        //Point pos_f2 = new Point(640 , 480);   //y width , x height
+        Point pos_f1 = new Point(0, 341);
         Point pos_f2 = new Point(640 , 480);   //y width , x height
+
 
         Torgb.copyTo(overlay);
         rectangle(Torgb,pos_f1,pos_f2,RGB_YELLOW,thick_f);
@@ -547,8 +555,9 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
         NUM_BALL = circles.cols();
 
         if(circles.cols() >= 3 && circles.rows() >= 1) {
-            Bback = "IM" + R_BALL + "back";
-            back_run();
+            //Bback = "IM" + R_BALL + "back";
+            //back_run();
+
             Point pos_to_show = new Point(30, 50);
             //Point pos_to_show2 = new Point(30, 100);
             int fontface = Core.FONT_HERSHEY_SIMPLEX;
@@ -615,24 +624,32 @@ public class camcv extends Activity implements CameraBridgeViewBase.CvCameraView
                 //Vertical
                 //CircleVec[0] = y , circleVec[1] = x
                 //PURPLE ZONE
-                if(circleVec[0] < 640 && circleVec[1] < 160){
+
+                //x = 0-160
+                //if(circleVec[0] < 640 && circleVec[1] < 160){
+                if(circleVec[0] < 640 && circleVec[1] < 141){
                     Imgproc.putText(Torgb,"Left", pos_to_show2, fontface, scale2,RGB_WHITE, thickness2);
 
                     Bleft = "IM" + R_BALL + "left.";
                     ball_run_left();
                 }
 
+
+                //x = 160-320
                 //GREEN ZONE
-                else if(circleVec[0] < 640 && circleVec[1] > 160 && circleVec[1] < 320) {
-                    Imgproc.putText(Torgb, "Forward", pos_to_show2, fontface, scale2, RGB_WHITE, thickness2);
+                //else if(circleVec[0] < 640 && circleVec[1] > 160 && circleVec[1] < 320) {
+                else if(circleVec[0] < 640 && circleVec[1] > 140 && circleVec[1] < 341) {
+                    Imgproc.putText(Torgb, "Center", pos_to_show2, fontface, scale2, RGB_WHITE, thickness2);
 
                     Bcenter = "IM" + R_BALL + "center.";
                     ball_run();
                 }
 
 
+                //x = 320-480
                 //YELLOW ZONE
-                else if(circleVec[0] < 640 && circleVec[1] > 321 && circleVec[1] < 481) {
+                //else if(circleVec[0] < 640 && circleVec[1] > 321 && circleVec[1] < 481) {
+                else if(circleVec[0] < 640 && circleVec[1] > 341 && circleVec[1] < 481) {
                     Imgproc.putText(Torgb,"Right", pos_to_show2, fontface, scale2, RGB_WHITE, thickness2);
 
                     Bright = "IM" + R_BALL + "right.";
