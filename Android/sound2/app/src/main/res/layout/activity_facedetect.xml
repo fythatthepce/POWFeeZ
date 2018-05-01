@@ -12,10 +12,13 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="11dp"
+        android:text="สั่งด้วยเสียง"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="28dp"
-        android:text="สั่งด้วยเสียง" />
+        android:layout_toRightOf="@+id/OtherCamera"
+        android:layout_toEndOf="@+id/OtherCamera"
+        android:layout_marginLeft="28dp"
+        android:layout_marginStart="28dp" />
 
     <SurfaceView
         android:id="@+id/camera_view"
@@ -30,36 +33,37 @@
         android:id="@+id/OtherCamera"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginLeft="13dp"
-        android:layout_marginStart="13dp"
-        android:text="switch cam"
-        android:textSize="9sp"
-        android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:text="สลับกล้อง"
+        android:textSize="5sp" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_alignBottom="@+id/textvoice"
-        android:layout_alignLeft="@+id/OtherCamera"
-        android:layout_alignStart="@+id/OtherCamera"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:layout_alignTop="@+id/textvoice" />
+        android:text="TextView"
+        android:textSize="5sp"
+        android:layout_above="@+id/button"
+        android:layout_alignLeft="@+id/OtherCamera"
+        android:layout_alignStart="@+id/OtherCamera" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="22dp"
-        android:layout_marginStart="22dp"
-        android:text="Facedetect  : "
-        android:layout_above="@+id/button_disconnect"
+        android:layout_below="@+id/camera_view"
+        android:layout_marginLeft="34dp"
+        android:layout_marginStart="34dp"
+        android:layout_toEndOf="@+id/button"
         android:layout_toRightOf="@+id/button"
-        android:layout_toEndOf="@+id/button" />
+        android:text="Facedetect  : "
+        android:textSize="5sp" />
 
     <TextView
         android:id="@+id/Numface"
@@ -71,16 +75,21 @@
         android:layout_marginStart="8dp"
         android:layout_toEndOf="@+id/textView4"
         android:layout_toRightOf="@+id/textView4"
-        android:text="0" />
+        android:text="0"
+        android:textSize="5sp" />
 
     <TextView
         android:id="@+id/textvoice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="รอรับคำสั่งเสียง"
-        android:layout_above="@+id/button"
-        android:layout_alignLeft="@+id/button"
-        android:layout_alignStart="@+id/button" />
+        android:text="รอคำสั่งเสียง"
+        android:textSize="8sp"
+        android:layout_alignBaseline="@+id/textView4"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignRight="@+id/button"
+        android:layout_alignEnd="@+id/button"
+        android:layout_marginRight="24dp"
+        android:layout_marginEnd="24dp" />
 
     <Button
         android:id="@+id/button_disconnect"
@@ -88,10 +97,12 @@
         android:layout_height="wrap_content"
         android:text="Disconnect"
         android:textColor="@android:color/holo_red_dark"
-        android:textSize="9sp"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_alignStart="@+id/textView4"
-        android:layout_alignTop="@+id/button"
+        android:textSize="5sp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_below="@+id/textView4"
+        android:layout_toRightOf="@+id/button"
+        android:layout_toEndOf="@+id/button"
         android:layout_alignBottom="@+id/OtherCamera" />
 
 </RelativeLayout>

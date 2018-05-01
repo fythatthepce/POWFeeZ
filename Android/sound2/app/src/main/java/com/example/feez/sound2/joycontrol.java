@@ -233,6 +233,7 @@ public class joycontrol extends Activity  {
                                 //buttons[inew][jnew].setBackgroundColor(Color.BLACK);
                             }
                         }, 500);
+
                     }else if(direction == JoyStickClass.STICK_DOWNRIGHT) {
                         textView5.setText("DOWNRIGHT");
 

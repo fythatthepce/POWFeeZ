@@ -6,6 +6,9 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.hardware.Camera;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -23,8 +26,10 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
+import android.graphics.Canvas;
 
 import static android.content.ContentValues.TAG;
 
@@ -54,6 +59,7 @@ public class facedetect extends Activity implements SurfaceHolder.Callback{//SCO
     BluetoothAdapter myBluetooth = null;
     BluetoothSocket btSocket = null;
     private boolean isBtConnected = false;
+    private Paint paint;
 
     //SPP UUID. Look for it
     static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
@@ -62,6 +68,7 @@ public class facedetect extends Activity implements SurfaceHolder.Callback{//SCO
     protected void onCreate(Bundle savedInstanceState) {//MAIN
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facedetect);
+
 
 
         //connect bluetooth
@@ -346,6 +353,26 @@ public class facedetect extends Activity implements SurfaceHolder.Callback{//SCO
                 btnsound.setEnabled(true);
 
 
+                /*
+                List<Rect> faceRects;
+                faceRects = new ArrayList<Rect>();
+
+                for (int i=0; i<faces.length; i++) {
+                    int left = faces[i].rect.left;
+                    int right = faces[i].rect.right;
+                    int top = faces[i].rect.top;
+                    int bottom = faces[i].rect.bottom;
+                    Rect uRect = new Rect(left, top, right, bottom);
+                    //faceRects.add(uRect);
+
+                    Canvas canvas = new Canvas();
+                    paint = new Paint();
+                    paint.setColor(Color.GRAY);
+                    canvas.drawColor(Color.BLUE);
+                    canvas.drawRect(uRect, paint);
+
+                }*/
+
 
 
                 Log.v("FaceDetection", "face detected: "+ faces.length +
@@ -360,6 +387,8 @@ public class facedetect extends Activity implements SurfaceHolder.Callback{//SCO
                 String str_speak = "Voice Activated";
                 speak.speak(str_speak,TextToSpeech.QUEUE_FLUSH,null,null);
             }
+
+
         }
     };
 
